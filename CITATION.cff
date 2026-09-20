@@ -8,8 +8,8 @@ authors:
     given-names: "Zartasha"
   - family-names: "Ali"
     given-names: "Sara"
-# Replace <ORG> with your GitHub account before release.
-repository-code: "https://github.com/<ORG>/hub-gene-audit"
+
+repository-code: "https://github.com/<Iqrarshad>/hub-gene-audit"
 license: MIT
 # Set to the Zenodo release date.
 date-released: "2026-01-01"
