@@ -12,7 +12,7 @@ authors:
 repository-code: "https://github.com/<Iqrarshad>/hub-gene-audit"
 license: MIT
 # Set to the Zenodo release date.
-date-released: "2026-01-01"
+date-released: "2026-09-20"
 preferred-citation:
   type: article
   title: "Study attention, not disease biology, drives hub-gene prioritization from protein interaction networks: implications for translational informatics pipelines"
@@ -24,5 +24,4 @@ preferred-citation:
     - family-names: "Ali"
       given-names: "Sara"
   year: 2026
-  # Update journal / doi on acceptance.
-  journal: "Journal of Biomedical Informatics"
+
