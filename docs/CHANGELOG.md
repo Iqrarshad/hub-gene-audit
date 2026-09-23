@@ -206,3 +206,57 @@ Helper `00h_bootstrap.R` holds the shared base-R functions (`fast_auc`,
 `bca_auc_ci`, tolerant readers). Base R only, no new package dependency.
 Configurable constants: `N_BOOT_CI` (stage 42), `MS_SEEDS` and `MS_R`
 (stage 43).
+
+## Reproducibility revision (Methods-to-code reconciliation)
+
+Applied to make the code match the Methods as written, ahead of the final run:
+- 00_config.R: deg_min_datasets kept at 3. A strict five-way intersection (=5) was
+  tested and yields 0 composition-robust genes, so it is not viable; the pre-declared
+  >=3-of-5 direction-consistent rule (148 genes) stands. The manuscript should describe it
+  as "differentially expressed in at least three of the five discovery cohorts with
+  consistent direction" rather than an "intersection".
+- 17_coexpression_network.R: co-expression edges now taken on positive Spearman
+  correlation (was |rho|); log message updated.
+- 07_hub_null.R: spike-in null now uses the 6-metric, >=4 consensus rule that the
+  main pipeline uses (removed the duplicate stress/radiality metrics and the >=6
+  threshold).
+- 02_deg_microarray.R: REMBRANDT grade contrast (GSE108474_HGG_vs_LGG) now adjusts
+  for neuronal + glial + immune, matching Eq. 5 and stage 41.
+- 24_literature_bias_gene2pubmed.R: degree->publication regression now retains
+  zero-degree and zero-publication genes (left join, zero-fill), matching the
+  stated log(1+.) rationale.
+- 36_wgcna_reproducibility.R: writes per-cohort soft-thresholding power (beta) to
+  tables/wgcna_soft_threshold_power.csv.
+
+## STRING density-cache fix
+- 14_density_threshold.R: string_net() no longer caches a NULL/empty result
+  (a rate-limited STRING call was poisoning cache/string_density/t<score>.rds).
+- 15, 17, 18, 25: if the density cache is NULL/empty, fall back to the stage-06
+  edge cache rds/string_<score>.rds. Prevents "No cached STRING edges" failures.
+
+## STRING rate-limit robustness (stage 14)
+- 14_density_threshold.R: string_net() now reuses the stage-06 edge cache
+  (rds/string_<score>.rds) for scores already fetched, and retries with
+  exponential backoff (5-60s) otherwise. Fixes the confidence-threshold sweep
+  returning 0 edges at every score when STRING rate-limits after stages 06-13.
+- 08_centrality_diagnostics.R: log corrected "eight" -> "six" centrality metrics.
+
+## Stale-cache self-healing (string_density)
+- --clean clears rds/tables/figures but not cache/, so a NULL string_density
+  cache written by a pre-fix run persisted and was read first.
+- 14_density_threshold.R: string_net() now ignores a NULL/empty cached file
+  and refetches (or reuses the stage-06 cache).
+- 41_reproducibility_gated_selection.R: falls back to rds/string_<score>.rds
+  when the density cache is NULL/empty (fixes the per-cohort conventional row
+  reading 0 genes / NA).
+
+## Repo finalization (pre-Zenodo hygiene)
+- README: removed TCGA-GBM (not used); corrected 54.5%/28.4% -> 47.9%/30.7%
+  (and "text-mining and co-occurrence channels"); "Eight" -> "Nine" corrections
+  with the correct list; figure stages 48/52/56 -> 29/32/38/41.
+- 44_corrections_table.R: binomial specific-connectivity dependence AUC now
+  read from hubbias_predictability.csv (was NA / "(text)"); matches Table 2.
+- published_hub_lists.csv: added cancer_group column (21 cancer strings collapse
+  to the 15 organ-site groups the manuscript reports).
+- make_supplementary_tables.R: new consolidation script that maps outputs to the
+  manuscript S1-S10 supplementary-table names. Run after run_all.R.
