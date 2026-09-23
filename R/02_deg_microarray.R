@@ -161,7 +161,8 @@ deg_gse108474_grade <- function() {
     mat <- collapse_to_symbol(mat, as.character(ann[[s_c[1]]])[i])
   }
   compositional_deg(mat, grp, "GSE108474_HGG_vs_LGG",
-                    contrast = c("HGG", "LGG"))
+                    contrast = c("HGG", "LGG"),
+                    adjust_for = c("neuronal", "glial", "immune"))
 }
 
 deg_gse16011 <- function() {

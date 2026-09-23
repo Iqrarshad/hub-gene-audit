@@ -50,23 +50,51 @@ string_net <- function(genes, score, tag) {
   cd <- file.path(CACHE_DIR, "string_density")
   dir.create(cd, showWarnings = FALSE, recursive = TRUE)
   f <- file.path(cd, paste0(tag, ".rds"))
-  if (file.exists(f)) return(readRDS(f))
-  r <- tryCatch(httr::POST("https://string-db.org/api/tsv/network",
-        body = list(identifiers = paste(genes, collapse = "%0d"),
-                    species = 9606, required_score = score,
-                    caller_identity = "glioma_density"), encode = "form"),
-        error = function(e) NULL)
-  e <- NULL
-  if (!is.null(r) && httr::status_code(r) == 200) {
+  if (file.exists(f)) {
+    cached <- tryCatch(readRDS(f), error = function(e) NULL)
+    if (!is.null(cached) && nrow(cached)) return(cached)
+  }
+
+  # Reuse the stage-06 edge cache when it already covers this score. By the time
+  # this stage runs, stages 06-13 have made many STRING calls, so a fresh POST is
+  # often rate-limited; reusing the cache avoids the call entirely for 400/700.
+  rf <- P("rds", paste0("string_", score, ".rds"))
+  if (file.exists(rf)) {
+    e0 <- tryCatch(readRDS(rf), error = function(err) NULL)
+    if (!is.null(e0) && nrow(e0)) {
+      e0 <- e0 %>% select(from, to) %>% filter(from != to) %>% distinct()
+      saveRDS(e0, f); return(e0)
+    }
+  }
+
+  fetch_once <- function() {
+    r <- tryCatch(httr::POST("https://string-db.org/api/tsv/network",
+          body = list(identifiers = paste(genes, collapse = "%0d"),
+                      species = 9606, required_score = score,
+                      caller_identity = "hub_gene_audit"), encode = "form"),
+          error = function(e) NULL)
+    if (is.null(r) || httr::status_code(r) != 200) return(NULL)
     d <- tryCatch(readr::read_tsv(I(httr::content(r, as = "text",
                                                   encoding = "UTF-8")),
                                   show_col_types = FALSE),
                   error = function(e) NULL)
-    if (!is.null(d) && nrow(d))
-      e <- d %>% select(from = preferredName_A, to = preferredName_B) %>%
-        filter(from != to) %>% distinct()
+    if (is.null(d) || !nrow(d)) return(NULL)
+    d %>% select(from = preferredName_A, to = preferredName_B) %>%
+      filter(from != to) %>% distinct()
   }
-  saveRDS(e, f); e
+
+  # Retry with exponential backoff to wait out STRING rate limiting.
+  e <- NULL
+  for (attempt in seq_len(6)) {
+    e <- fetch_once()
+    if (!is.null(e) && nrow(e)) break
+    wait <- min(60, 5 * 2^(attempt - 1))   # 5, 10, 20, 40, 60, 60 s
+    log_msg("  STRING score ", score, ": no edges (attempt ", attempt,
+            "), backing off ", wait, "s")
+    Sys.sleep(wait)
+  }
+  if (!is.null(e) && nrow(e)) saveRDS(e, f)
+  e
 }
 
 build_graph <- function(edges, genes) {

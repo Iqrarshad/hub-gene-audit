@@ -57,7 +57,6 @@ main_40 <- function() {
     "Glioma microarray", "GSE15824", "Microarray", "Discovery",
     "Glioma microarray", "GSE21354", "Microarray", "Discovery",
     "TCGA-LGG", "GDC / cBioPortal", "RNA-seq", "Validation",
-    "TCGA-GBM", "GDC / cBioPortal", "RNA-seq", "Validation",
     "CGGA mRNAseq 325", "CGGA", "RNA-seq", "Validation",
     "CGGA mRNAseq 693", "CGGA", "RNA-seq", "Validation",
     "STRING human", "v12.0", "Interactome", "Network",

@@ -75,8 +75,9 @@ main_25 <- function() {
   score <- as.integer(net$chosen)
 
   ef <- file.path(CACHE_DIR, "string_density", paste0("t", score, ".rds"))
-  edges <- if (file.exists(ef)) readRDS(ef) else
-           readRDS(P("rds", paste0("string_", score, ".rds")))
+  edges <- if (file.exists(ef)) readRDS(ef) else NULL
+  if (is.null(edges) || !nrow(edges))
+    edges <- readRDS(P("rds", paste0("string_", score, ".rds")))
   edges <- edges %>% filter(from %in% genes, to %in% genes)
   g <- graph_from_data_frame(edges, directed = FALSE, vertices = genes)
   log_msg("Network: ", vcount(g), " nodes, ", ecount(g), " edges")

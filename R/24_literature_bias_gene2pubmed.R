@@ -50,8 +50,9 @@ main_24 <- function() {
   # --- Q1: how much of degree does citation explain? --------------------
   run_q1 <- function(degcol, label, csv) {
     dd <- tibble(gene = bg$gene, degree = bg[[degcol]]) %>%
-      filter(!is.na(degree), degree > 0) %>%
-      inner_join(pap, by = "gene") %>%
+      filter(!is.na(degree)) %>%
+      left_join(pap, by = "gene") %>%
+      mutate(n_papers = ifelse(is.na(n_papers), 0L, n_papers)) %>%
       mutate(ld = log10(degree + 1), lp = log10(n_papers + 1))
     if (nrow(dd) < 100) stop("Too few genes for the ", label, " regression.")
     fit <- lm(ld ~ lp, data = dd)

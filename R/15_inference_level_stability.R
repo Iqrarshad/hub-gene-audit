@@ -137,9 +137,11 @@ main_15 <- function() {
 
   # Edges for the observed network
   ef <- file.path(CACHE_DIR, "string_density", paste0("t", score, ".rds"))
-  edges <- if (file.exists(ef)) readRDS(ef) else
-           readRDS(P("rds", paste0("string_", score, ".rds")))
-  if (is.null(edges)) stop("No cached STRING edges; run the network stage (06) first.")
+  edges <- if (file.exists(ef)) readRDS(ef) else NULL
+  if (is.null(edges) || !nrow(edges))
+    edges <- readRDS(P("rds", paste0("string_", score, ".rds")))
+  if (is.null(edges) || !nrow(edges))
+    stop("No cached STRING edges; run the network stage (06) first.")
 
   log_msg("Gene set: ", length(genes), "; edges: ", nrow(edges))
 

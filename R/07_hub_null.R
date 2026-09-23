@@ -70,17 +70,15 @@ consensus_hubs <- function(edges, all_genes) {
               closeness = closeness(g, normalized = TRUE),
               eigenvector = eigen_centrality(g)$vector,
               pagerank = page_rank(g)$vector,
-              mcc = mcc_score(g)[vs],
-              stress = betweenness(g),
-              radiality = closeness(g, normalized = TRUE))
+              mcc = mcc_score(g)[vs])
 
   methods <- c("degree", "betweenness", "closeness", "eigenvector",
-               "pagerank", "mcc", "stress", "radiality")
+               "pagerank", "mcc")
   top10 <- vapply(methods, function(mth) {
     as.integer(m$gene %in% m$gene[head(order(m[[mth]], decreasing = TRUE), 10)])
   }, integer(nrow(m)))
   m$n <- rowSums(top10)
-  m$gene[m$n >= 6]
+  m$gene[m$n >= 4]
 }
 
 main_07 <- function() {

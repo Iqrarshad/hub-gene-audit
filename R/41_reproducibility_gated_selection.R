@@ -420,11 +420,13 @@ main_41 <- function() {
   if (!is.null(net)) {
     score <- as.integer(net$chosen)
     sf <- file.path(CACHE_DIR, "string_density", paste0("t", score, ".rds"))
-    string_edges <- tryCatch(
-      if (file.exists(sf)) readRDS(sf)
-      else if (file.exists(P("rds", paste0("string_", score, ".rds"))))
-        readRDS(P("rds", paste0("string_", score, ".rds"))) else NULL,
-      error = function(e) NULL)
+    rf <- P("rds", paste0("string_", score, ".rds"))
+    string_edges <- tryCatch({
+      se0 <- if (file.exists(sf)) readRDS(sf) else NULL
+      if (is.null(se0) || !nrow(se0))
+        se0 <- if (file.exists(rf)) readRDS(rf) else NULL
+      se0
+    }, error = function(e) NULL)
   }
 
   # Conventional STRING and cytoHubba, run per cohort on each cohort's own

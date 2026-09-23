@@ -34,6 +34,8 @@ main_44 <- function() {
                         "C: degree residual only", "auc_selectivity")
   base_cit <- pick_cell("citation_penalised_comparison.csv", "method",
                         "cytoHubba (conventional)", "auc_citation_bias")
+  binom_dep <- pick_cell("hubbias_predictability.csv", "target",
+                         "binomial significant", "auc")
 
   # Network-free selectors: reproducibility and citation AUC, averaged over
   # the rows in downgrade_result.csv exactly as stage 40 does for Table 3.
@@ -71,7 +73,7 @@ main_44 <- function() {
     reproducibility = c(na, na, na, na, na,
                         nf_repro("variance"), nf_repro("DE_tstat"),
                         nf_repro("relevance"), nf_repro("mRMR")),
-    dependence_auc = c(na, round0(rewire), na, round0(comp), round0(cp_cit),
+    dependence_auc = c(na, round0(rewire), round0(binom_dep), round0(comp), round0(cp_cit),
                        round0(nf_dep("variance")), round0(nf_dep("DE_tstat")),
                        round0(nf_dep("relevance")), round0(nf_dep("mRMR"))),
     selectivity_auc = c(na, na, na, na, round0(cp_sel), na, na, na, na),
@@ -83,7 +85,7 @@ main_44 <- function() {
                 "reproducibility lost", "reproducibility lost",
                 "reproducibility lost", "reproducibility lost"),
     source_file = c("(text)", "hub_metric_comparison.csv",
-                    "(text)", "composite_hub_comparison.csv",
+                    "hubbias_predictability.csv", "composite_hub_comparison.csv",
                     "citation_penalised_comparison.csv",
                     "downgrade_result.csv", "downgrade_result.csv",
                     "downgrade_result.csv", "downgrade_result.csv"),

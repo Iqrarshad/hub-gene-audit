@@ -96,15 +96,17 @@ build_coexpression <- function(mat, genes, n_edges, label) {
 
   # Threshold to the requested number of edges, matching STRING density
   ut <- which(upper.tri(C), arr.ind = TRUE)
-  vals <- abs(C[ut])
-  if (n_edges >= length(vals)) n_edges <- floor(length(vals) * 0.05)
-  cut <- sort(vals, decreasing = TRUE)[n_edges]
-  sel <- ut[vals >= cut, , drop = FALSE]
+  vals <- C[ut]                       # signed Spearman; positive edges only
+  pos <- which(vals > 0)
+  if (n_edges > length(pos)) n_edges <- length(pos)
+  ord <- pos[order(vals[pos], decreasing = TRUE)][seq_len(n_edges)]
+  sel <- ut[ord, , drop = FALSE]
+  cut <- if (length(ord)) vals[ord[length(ord)]] else NA_real_
 
   edges <- tibble(from = colnames(C)[sel[, 1]],
                   to   = colnames(C)[sel[, 2]],
                   rho  = C[sel])
-  log_msg(label, ": ", nrow(edges), " edges at |rho| >= ", round(cut, 3))
+  log_msg(label, ": ", nrow(edges), " edges at rho >= ", round(cut, 3))
 
   gr <- graph_from_data_frame(edges %>% select(from, to),
                               directed = FALSE, vertices = g)
@@ -123,9 +125,10 @@ main_17 <- function() {
 
   # ---- STRING reference -------------------------------------------------
   sf <- file.path(CACHE_DIR, "string_density", paste0("t", score, ".rds"))
-  se <- if (file.exists(sf)) readRDS(sf) else
-        readRDS(P("rds", paste0("string_", score, ".rds")))
-  if (is.null(se)) stop("No cached STRING edges.")
+  se <- if (file.exists(sf)) readRDS(sf) else NULL
+  if (is.null(se) || !nrow(se))
+    se <- readRDS(P("rds", paste0("string_", score, ".rds")))
+  if (is.null(se) || !nrow(se)) stop("No cached STRING edges.")
   se <- se %>% filter(from %in% genes, to %in% genes)
   sg <- graph_from_data_frame(se, directed = FALSE, vertices = genes)
   s_hub <- hub_select(sg)

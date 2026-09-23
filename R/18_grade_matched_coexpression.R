@@ -32,8 +32,9 @@ main_18 <- function() {
   score <- as.integer(net$chosen)
 
   sf <- file.path(CACHE_DIR, "string_density", paste0("t", score, ".rds"))
-  se <- if (file.exists(sf)) readRDS(sf) else
-        readRDS(P("rds", paste0("string_", score, ".rds")))
+  se <- if (file.exists(sf)) readRDS(sf) else NULL
+  if (is.null(se) || !nrow(se))
+    se <- readRDS(P("rds", paste0("string_", score, ".rds")))
   n_edges <- se %>% filter(from %in% genes, to %in% genes) %>% nrow()
   log_msg("Edge budget matched to STRING: ", n_edges)
 

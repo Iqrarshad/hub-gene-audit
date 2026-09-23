@@ -158,6 +158,12 @@ main_36 <- function() {
     return(invisible(NULL))
   }
 
+  beta_tbl <- tibble(cohort = names(fits),
+                     soft_power_beta = vapply(fits, function(f) f$power, numeric(1)))
+  write_csv(beta_tbl, P("tables", "wgcna_soft_threshold_power.csv"))
+  log_msg("Soft-thresholding powers (beta): ",
+          paste(beta_tbl$cohort, beta_tbl$soft_power_beta, sep = "=", collapse = ", "))
+
   pairs <- combn(names(fits), 2, simplify = FALSE)
   rows <- map(pairs, function(p) {
     a <- fits[[p[1]]]; b <- fits[[p[2]]]

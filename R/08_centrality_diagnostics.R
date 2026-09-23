@@ -125,7 +125,7 @@ main_08 <- function() {
   cm <- cor(tab_full[, mets], method = "spearman", use = "complete.obs")
   write_csv(as.data.frame(cm) %>% rownames_to_column("metric"),
             P("tables", "centrality_metric_correlations.csv"))
-  log_msg("Spearman correlations among the eight centrality metrics:")
+  log_msg("Spearman correlations among the six centrality metrics:")
   print(round(cm, 2))
   offdiag <- cm[upper.tri(cm)]
   log_msg("Median pairwise correlation: ", round(median(offdiag), 3),
