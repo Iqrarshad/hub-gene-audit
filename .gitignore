@@ -1,0 +1,21 @@
+# Machine-specific config (copy from config.local.example.R)
+config.local.R
+
+# Pipeline data and generated results (paths set via --data-dir / --results-dir)
+data/
+results/
+rds/
+*.rds
+
+# R session artifacts
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+.vscode/
+.idea/

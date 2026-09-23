@@ -55,7 +55,7 @@ of them are redistributed here; they come from public repositories and, in
 one case, a controlled-access portal. The datasets are listed in
 `docs/CHANGELOG.md` under Inputs, with their accessions. In brief: five
 discovery expression datasets (GSE147352, GSE16011, GSE108474, GSE15824,
-GSE21354), four validation cohorts (TCGA-LGG, TCGA-GBM, CGGA-325, CGGA-693),
+GSE21354), three reproducibility cohorts (TCGA-LGG, CGGA-325, CGGA-693),
 one single-cell reference (GSE84465), the STRING v12 human network, NCBI
 gene2pubmed, and DepMap CRISPR essentiality.
 
@@ -147,12 +147,14 @@ own machine before you rely on a single full run.
 
 Hub membership is predictable from a gene's total STRING degree at an AUC of
 0.994; genes placed into random gene sets are still nominated as hubs
-(stage 12). Publication count from gene2pubmed explains 54.5% of the variance
-in interactome degree, or 28.4% with the text-mining channel removed
-(stage 24). Eight attempted corrections, including
-degree normalisation, degree-preserving nulls, cohort co-expression,
-citation penalties and a CRISPR co-essentiality network, each either keep
-the bias or lose the signal (stages 13, 20, 21, 22, 25, 26).
+(stage 12). Publication count from gene2pubmed explains 47.9% of the variance
+in interactome degree, or 30.7% with the text-mining and co-occurrence channels removed
+(stage 24). Nine attempted corrections (five that keep the network:
+degree normalisation, degree-preserving rewiring, binomial specific
+connectivity, composite centrality, degree residualisation; and four
+network-free selectors: expression variance, grade statistic, mutual
+information, mRMR), plus two network-propagation variants, each either keep
+the bias or lose the reproducibility (stages 12, 13, 20, 22, 25, 26, 27, 30, 31, 44).
 
 Network propagation on a text-mining-free STRING graph recovers degree
 rather than differential expression: held-out recovery of a masked signal is
@@ -183,11 +185,11 @@ more elaborate (stage 34).
 
 ## Reproducing the figures
 
-The figures for the audit are produced by stages 48 and 52 and depend only
+The figures for the audit are produced by stages 29, 32, 38 and 41 and depend only
 on the CSV outputs of the analysis stages. If those outputs are present:
 
 ```bash
-Rscript run_all.R 48 52 56
+Rscript run_all.R 29 32 38 41
 ```
 
 Figures are written as 1200 DPI TIFF (LZW), PDF and PNG, in Times New Roman,

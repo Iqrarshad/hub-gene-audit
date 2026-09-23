@@ -1,31 +1,31 @@
-study_id,first_author,year,journal,identifier,cancer,n_datasets,deg_criterion,network_nodes,network_edges,hub_method,n_hubs,hub_genes,direction,verification
-S01,Ma,2021,Scientific Reports,10.1038/s41598-020-79235-9,gastric cancer,1,raw p<0.05 |log2FC|>1,1376,14394,intersection >=5 of 11 cytoHubba algorithms,11,C3;CDK1;AURKA;CDC20;CCNA2;AURKB;CCNB1;BUB1B;MAD2L1;UBE2C;FN1,up,full text verified
-S02,Zhang,2020,Bioscience Reports,PMC7385582,glioblastoma,3,adjusted p<0.05 |log2FC|>=2,168,887,cytoHubba MCC top10,10,SYN1;SNAP25;SYN2;RAB3A;SYP;SLC17A7;STX1B;CPLX2;SYT4;SV2B,down,full text verified
-S03,Yang,2020,Journal of Ovarian Research,10.1186/s13048-020-0613-2,ovarian cancer,4,adjusted p<0.05 |log2FC|>1,168,450,cytoHubba degree top10,10,KIF4A;CDC20;CCNB2;TOP2A;RRM2;TYMS;KIF11;BIRC5;BUB1B;FOXM1,up,full text verified
-S04,Zheng,2022,Translational Cancer Research,PMC9189183,bladder cancer,1,raw p<0.05 |log2FC|>=2,NA,NA,cytoHubba degree top10,10,KIF11;DLGAP5;NCAPG;CDC20;CCNB2;BUB1B;TPX2;NUF2;KIF2C;CCNB1,up,full text verified
-S05,Sun,2020,BioMed Research International,PMC7744201,HBV hepatocellular carcinoma,4,NA,NA,NA,combined cytoHubba overlap,17,UBE2C;RRM2;RFC4;TOP2A;MCM2;CDK1;CCNB1;HMMR;CDC20;CCNA2;NEK2;NDC80;DLGAP5;KIF11;MCM6;MCM3;PRIM1,up,full text verified
-S06,Zhou,2019,Oncology Letters,PMID31746405,hepatocellular carcinoma,1,NA,89,NA,cytoHubba degree top10,10,CCNB1;CCNA2;CCNB2;NCAPG;PBK;NUSAP1;AURKA;ZWINT;PRC1;KIF4A,up,full text verified
-S07,Zhang,2022,Frontiers in Molecular Biosciences,10.3389/fmolb.2022.1000847,hepatocellular carcinoma,3,NA,NA,NA,intersection of 5 cytoHubba algorithms,4,AURKA;CCNB1;DLGAP5;NCAPG,up,full text verified
-S08,Zhang,2022,Frontiers in Cell and Developmental Biology,PMC9184445,colorectal adenocarcinoma,1,NA,NA,NA,cytoHubba degree and MCC,10,SLC26A3;GUCA2A;CLCA4;MS4A12;GUCA2B;CLCA1;AQP8;SI;KRT20;SLC4A4,down,full text verified
-S09,Zhang,2020,Medicine,PMC7598841,lung adenocarcinoma,3,NA,NA,NA,MCODE plus cytoHubba degree top10,10,UBE2C;TOP2A;RRM2;CDC20;CCNB2;KIAA0101;BUB1B;TPX2;PRC1;CDK1,up,full text verified
-S10,Wang,2021,Computational and Mathematical Methods in Medicine,10.1155/2021/5550407,lung adenocarcinoma,NA,NA,269,625,MCODE plus cytoHubba,7,MCM4;CDC20;CDC25C;BIRC5;FOXM1;GTSE1;RFC4,up,full text verified
-S11,Liu,2021,American Journal of Translational Research,PMC8201699,gastric cancer,7,raw p<0.05,NA,NA,cytoHubba degree betweenness closeness intersection,7,HMMR;SPP1;FN1;CCNB1;CXCL8;MAD2L1;CCNA2,up,full text verified
-S12,Guo,2023,Medicine,PMC10019133,breast cancer,3,raw p<0.05 |log2FC|>=1.5,NA,NA,cytoHubba MCC and degree top10,10,BUB1;HMMR;MAD2L1;CEP55;AURKA;CCNB2;TPX2;MELK;KIF20A;CDK1,up,full text verified
-S13,Bahreini,2023,Scientific Reports,10.1038/s41598-023-35318-x,breast cancer,NA,NA,493,3052,cytoHubba MCC top15,15,AURKA;AURKB;MELK;TTK;KIF20A;CDK1;KIF2C;CDCA8;PCLAF;MCM4;CDCA5;CDC20;CDC45;PTTG1;MCM6,up,full text verified
-S14,Zhang,2023,Frontiers in Oncology,10.3389/fonc.2023.1168772,prostate cancer,2,NA,NA,NA,cytoHubba plus GEPIA survival,7,SPP1;MYLK;MYL9;MYH11;CALD1;ACTA2;CNN1,mixed,full text verified
-S15,Zhang,2021,PLOS One,10.1371/journal.pone.0247827,prostate cancer,4,NA,NA,NA,cytoHubba degree bottleneck,1,UBE2C,up,full text verified
-S16,Chen,2022,Iranian Journal of Public Health,PMID35223598,pancreatic ductal adenocarcinoma,3,NA,NA,NA,cytoHubba degree top30 plus survival,3,CEP55;ANLN;PRC1,up,partial
-S17,Wang,2019,BioMed Research International,PMC6350566,anaplastic thyroid carcinoma,2,NA,NA,NA,PPI degree cytoHubba,7,TOP2A;TYMS;CCNB1;RACGAP1;FEN1;PRC1;UBE2C,up,full text verified
-S18,Xu,2021,Frontiers in Cell and Developmental Biology,PMC8012734,papillary thyroid carcinoma,4,NA,NA,NA,cytoHubba plus survival,6,CDH3;CTGF;CYR61;OGN;FGF13;CHRDL1,down,full text verified
-S19,Liu,2019,Oncology Letters,PMC6956406,thyroid cancer lymph node metastasis,NA,NA,483,988,cytoHubba top7,7,IL6;ACTN2;COL1A1;ACTA1;CALB2;THBS1;PTH,mixed,full text verified
-S20,Zhang,2019,Bioscience Reports,PMC6530124,esophageal squamous cell carcinoma,4,NA,NA,NA,cytoHubba degree top10,10,CDK1;CCNB1;TOP2A;CCNB2;BUB1;CCNA2;NCAPG;AURKB;NDC80;BUB1B,up,full text verified
-S21,Liu,2021,BioMed Research International,PMC8723838,esophageal cancer,NA,NA,NA,NA,cytoHubba MCC top10,10,TOP2A;ASPM;CDK1;CDC20;CCNA2;KIF20A;KIF11;DLGAP5;TPX2;BUB1B,up,full text verified
-S22,Zhu,2022,BioMed Research International,PMC8918393,bladder cancer,1,NA,NA,NA,cytoHubba MCC top10,10,HSP90AA1;MYH11;MYL9;CNN1;ACTC1;RAN;ENO1;HNRNPC;ACTG2;YWHAZ,mixed,full text verified
-S23,Liu,2020,Journal of International Medical Research,PMC7513414,colon cancer,3,NA,189,424,cytoHubba top30 plus survival,3,ZG16;TIMP1;BGN,mixed,full text verified
-S24,Wang,2020,Molecular Medicine Reports,PMC7377202,clear cell renal cell carcinoma,6,NA,NA,NA,cytoHubba MCC and MNC intersection,6,CXCL12;BDKRB2;ADCY7;CASR;KNG1;LPAR5,down,full text verified
-S25,Zhou,2020,BioMed Research International,PMC7029304,chromophobe renal cell carcinoma,1,NA,NA,NA,cytoHubba degree betweenness stress top3,3,CENPA;KNG1;AGT,mixed,full text verified
-S26,Wang,2019,BioMed Research International,PMC6500689,glioblastoma,NA,p<0.05 |r|>0.4,401,1890,cytoHubba degree top20,20,CALB1;CDC20;CDCA8;CDK1;CEP55;DLGAP5;KIF20A;KIF4A;NDC80;PBK;RRM2;SYN1;SYP;SYT1;TPX2;TTK;VEGFA;BDNF;GNG3;TOP2A,mixed,full text verified
-S27,Chen,2024,BMC Cancer,10.1186/s12885-024-12658-z,cervical cancer,NA,NA,297,NA,cytoHubba 12 algorithms,5,AURKA;CCNA2;TOP2A;KRT1;IVL,mixed,full text verified
-S28,Tu,2021,Cancer Biomarkers,10.3233/CBM-203262,cervical cancer,1,NA,64,NA,cytoHubba MCC top10,10,RFC5;POLE3;RAD51;RMI1;PALB2;HDAC1;MCM4;ESR1;FOS;E2F1,mixed,full text verified
-S29,Zhang,2022,BioMed Research International,PMC8918693,clear cell renal cell carcinoma,NA,NA,NA,NA,cytoHubba PPI top6,6,C3;CXCR3;CXCL10;CCR5;CCL4;CCL5,mixed,full text verified
-S30,Li,2022,BioMed Research International,PMC9107040,osteosarcoma and Ewing sarcoma,NA,NA,121,232,degree>10 cytoHubba,3,FN1;COL1A1;COL1A2,down,partial
+study_id,first_author,year,journal,identifier,cancer,cancer_group,n_datasets,deg_criterion,network_nodes,network_edges,hub_method,n_hubs,hub_genes,direction,verification
+S01,Ma,2021,Scientific Reports,10.1038/s41598-020-79235-9,gastric cancer,Gastric,1,raw p<0.05 |log2FC|>1,1376,14394,intersection >=5 of 11 cytoHubba algorithms,11,C3;CDK1;AURKA;CDC20;CCNA2;AURKB;CCNB1;BUB1B;MAD2L1;UBE2C;FN1,up,full text verified
+S02,Zhang,2020,Bioscience Reports,PMC7385582,glioblastoma,Glioblastoma,3,adjusted p<0.05 |log2FC|>=2,168,887,cytoHubba MCC top10,10,SYN1;SNAP25;SYN2;RAB3A;SYP;SLC17A7;STX1B;CPLX2;SYT4;SV2B,down,full text verified
+S03,Yang,2020,Journal of Ovarian Research,10.1186/s13048-020-0613-2,ovarian cancer,Ovarian,4,adjusted p<0.05 |log2FC|>1,168,450,cytoHubba degree top10,10,KIF4A;CDC20;CCNB2;TOP2A;RRM2;TYMS;KIF11;BIRC5;BUB1B;FOXM1,up,full text verified
+S04,Zheng,2022,Translational Cancer Research,PMC9189183,bladder cancer,Bladder,1,raw p<0.05 |log2FC|>=2,NA,NA,cytoHubba degree top10,10,KIF11;DLGAP5;NCAPG;CDC20;CCNB2;BUB1B;TPX2;NUF2;KIF2C;CCNB1,up,full text verified
+S05,Sun,2020,BioMed Research International,PMC7744201,HBV hepatocellular carcinoma,Liver,4,NA,NA,NA,combined cytoHubba overlap,17,UBE2C;RRM2;RFC4;TOP2A;MCM2;CDK1;CCNB1;HMMR;CDC20;CCNA2;NEK2;NDC80;DLGAP5;KIF11;MCM6;MCM3;PRIM1,up,full text verified
+S06,Zhou,2019,Oncology Letters,PMID31746405,hepatocellular carcinoma,Liver,1,NA,89,NA,cytoHubba degree top10,10,CCNB1;CCNA2;CCNB2;NCAPG;PBK;NUSAP1;AURKA;ZWINT;PRC1;KIF4A,up,full text verified
+S07,Zhang,2022,Frontiers in Molecular Biosciences,10.3389/fmolb.2022.1000847,hepatocellular carcinoma,Liver,3,NA,NA,NA,intersection of 5 cytoHubba algorithms,4,AURKA;CCNB1;DLGAP5;NCAPG,up,full text verified
+S08,Zhang,2022,Frontiers in Cell and Developmental Biology,PMC9184445,colorectal adenocarcinoma,Colorectal,1,NA,NA,NA,cytoHubba degree and MCC,10,SLC26A3;GUCA2A;CLCA4;MS4A12;GUCA2B;CLCA1;AQP8;SI;KRT20;SLC4A4,down,full text verified
+S09,Zhang,2020,Medicine,PMC7598841,lung adenocarcinoma,Lung,3,NA,NA,NA,MCODE plus cytoHubba degree top10,10,UBE2C;TOP2A;RRM2;CDC20;CCNB2;KIAA0101;BUB1B;TPX2;PRC1;CDK1,up,full text verified
+S10,Wang,2021,Computational and Mathematical Methods in Medicine,10.1155/2021/5550407,lung adenocarcinoma,Lung,NA,NA,269,625,MCODE plus cytoHubba,7,MCM4;CDC20;CDC25C;BIRC5;FOXM1;GTSE1;RFC4,up,full text verified
+S11,Liu,2021,American Journal of Translational Research,PMC8201699,gastric cancer,Gastric,7,raw p<0.05,NA,NA,cytoHubba degree betweenness closeness intersection,7,HMMR;SPP1;FN1;CCNB1;CXCL8;MAD2L1;CCNA2,up,full text verified
+S12,Guo,2023,Medicine,PMC10019133,breast cancer,Breast,3,raw p<0.05 |log2FC|>=1.5,NA,NA,cytoHubba MCC and degree top10,10,BUB1;HMMR;MAD2L1;CEP55;AURKA;CCNB2;TPX2;MELK;KIF20A;CDK1,up,full text verified
+S13,Bahreini,2023,Scientific Reports,10.1038/s41598-023-35318-x,breast cancer,Breast,NA,NA,493,3052,cytoHubba MCC top15,15,AURKA;AURKB;MELK;TTK;KIF20A;CDK1;KIF2C;CDCA8;PCLAF;MCM4;CDCA5;CDC20;CDC45;PTTG1;MCM6,up,full text verified
+S14,Zhang,2023,Frontiers in Oncology,10.3389/fonc.2023.1168772,prostate cancer,Prostate,2,NA,NA,NA,cytoHubba plus GEPIA survival,7,SPP1;MYLK;MYL9;MYH11;CALD1;ACTA2;CNN1,mixed,full text verified
+S15,Zhang,2021,PLOS One,10.1371/journal.pone.0247827,prostate cancer,Prostate,4,NA,NA,NA,cytoHubba degree bottleneck,1,UBE2C,up,full text verified
+S16,Chen,2022,Iranian Journal of Public Health,PMID35223598,pancreatic ductal adenocarcinoma,Pancreatic,3,NA,NA,NA,cytoHubba degree top30 plus survival,3,CEP55;ANLN;PRC1,up,partial
+S17,Wang,2019,BioMed Research International,PMC6350566,anaplastic thyroid carcinoma,Thyroid,2,NA,NA,NA,PPI degree cytoHubba,7,TOP2A;TYMS;CCNB1;RACGAP1;FEN1;PRC1;UBE2C,up,full text verified
+S18,Xu,2021,Frontiers in Cell and Developmental Biology,PMC8012734,papillary thyroid carcinoma,Thyroid,4,NA,NA,NA,cytoHubba plus survival,6,CDH3;CTGF;CYR61;OGN;FGF13;CHRDL1,down,full text verified
+S19,Liu,2019,Oncology Letters,PMC6956406,thyroid cancer lymph node metastasis,Thyroid,NA,NA,483,988,cytoHubba top7,7,IL6;ACTN2;COL1A1;ACTA1;CALB2;THBS1;PTH,mixed,full text verified
+S20,Zhang,2019,Bioscience Reports,PMC6530124,esophageal squamous cell carcinoma,Esophageal,4,NA,NA,NA,cytoHubba degree top10,10,CDK1;CCNB1;TOP2A;CCNB2;BUB1;CCNA2;NCAPG;AURKB;NDC80;BUB1B,up,full text verified
+S21,Liu,2021,BioMed Research International,PMC8723838,esophageal cancer,Esophageal,NA,NA,NA,NA,cytoHubba MCC top10,10,TOP2A;ASPM;CDK1;CDC20;CCNA2;KIF20A;KIF11;DLGAP5;TPX2;BUB1B,up,full text verified
+S22,Zhu,2022,BioMed Research International,PMC8918393,bladder cancer,Bladder,1,NA,NA,NA,cytoHubba MCC top10,10,HSP90AA1;MYH11;MYL9;CNN1;ACTC1;RAN;ENO1;HNRNPC;ACTG2;YWHAZ,mixed,full text verified
+S23,Liu,2020,Journal of International Medical Research,PMC7513414,colon cancer,Colorectal,3,NA,189,424,cytoHubba top30 plus survival,3,ZG16;TIMP1;BGN,mixed,full text verified
+S24,Wang,2020,Molecular Medicine Reports,PMC7377202,clear cell renal cell carcinoma,Kidney,6,NA,NA,NA,cytoHubba MCC and MNC intersection,6,CXCL12;BDKRB2;ADCY7;CASR;KNG1;LPAR5,down,full text verified
+S25,Zhou,2020,BioMed Research International,PMC7029304,chromophobe renal cell carcinoma,Kidney,1,NA,NA,NA,cytoHubba degree betweenness stress top3,3,CENPA;KNG1;AGT,mixed,full text verified
+S26,Wang,2019,BioMed Research International,PMC6500689,glioblastoma,Glioblastoma,NA,p<0.05 |r|>0.4,401,1890,cytoHubba degree top20,20,CALB1;CDC20;CDCA8;CDK1;CEP55;DLGAP5;KIF20A;KIF4A;NDC80;PBK;RRM2;SYN1;SYP;SYT1;TPX2;TTK;VEGFA;BDNF;GNG3;TOP2A,mixed,full text verified
+S27,Chen,2024,BMC Cancer,10.1186/s12885-024-12658-z,cervical cancer,Cervical,NA,NA,297,NA,cytoHubba 12 algorithms,5,AURKA;CCNA2;TOP2A;KRT1;IVL,mixed,full text verified
+S28,Tu,2021,Cancer Biomarkers,10.3233/CBM-203262,cervical cancer,Cervical,1,NA,64,NA,cytoHubba MCC top10,10,RFC5;POLE3;RAD51;RMI1;PALB2;HDAC1;MCM4;ESR1;FOS;E2F1,mixed,full text verified
+S29,Zhang,2022,BioMed Research International,PMC8918693,clear cell renal cell carcinoma,Kidney,NA,NA,NA,NA,cytoHubba PPI top6,6,C3;CXCR3;CXCL10;CCR5;CCL4;CCL5,mixed,full text verified
+S30,Li,2022,BioMed Research International,PMC9107040,osteosarcoma and Ewing sarcoma,Sarcoma,NA,NA,121,232,degree>10 cytoHubba,3,FN1;COL1A1;COL1A2,down,partial
